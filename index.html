@@ -12,7 +12,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: #f4f7fc;
@@ -20,7 +19,6 @@
             line-height: 1.5;
             padding: 2rem 1.5rem;
         }
-
         .container {
             max-width: 1280px;
             margin: 0 auto;
@@ -30,8 +28,6 @@
             overflow: hidden;
             padding: 2rem 2rem 2.5rem;
         }
-
-        /* 头部区域 */
         .header {
             display: flex;
             justify-content: space-between;
@@ -78,7 +74,6 @@
             box-shadow: 0 1px 4px rgba(0,0,0,0.1);
             color: #1E6F5C;
         }
-        /* 卡片通用样式 */
         .card {
             background: #ffffff;
             border-radius: 1.5rem;
@@ -188,15 +183,22 @@
             background: none;
             border: none;
         }
+        .insight-text {
+            background: #f0f9f6;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1rem;
+            margin: 1rem 0 0.5rem;
+            font-size: 0.9rem;
+            border-left: 3px solid #289672;
+        }
     </style>
 </head>
 <body>
 <div class="container" id="app">
-    <!-- 头部 中英文切换 -->
     <div class="header">
         <div class="title-section">
             <h1>🧠 AI 个人整理副驾 · 产品案例</h1>
-            <p>AI PC 产品经理面试实战 | MRD → PRD → 迭代全流程</p>
+            <p>AI PC 产品经理面试实战 | MRD → PRD → 技术决策 → 迭代</p>
         </div>
         <div class="lang-switch">
             <button class="lang-btn active" data-lang="cn">🇨🇳 中文</button>
@@ -204,9 +206,9 @@
         </div>
     </div>
 
-    <!-- 中文内容容器 -->
+    <!-- 中文内容 -->
     <div id="cn-content" class="lang-cn">
-        <!-- 问题与研究 -->
+        <!-- 痛点与研究 -->
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-chart-line"></i>
@@ -225,14 +227,13 @@
                     </div>
                     <div>
                         <span class="badge">隐私优先机会</span>
-                        <p>✔️ 利用AI PC本地NPU实现离线推理，敏感文件不上传云端<br>
-                        ✔️ 填补“智能+本地隐私”空白，成为生产力副驾而非普通工具</p>
+                        <p>✔️ 利用AI PC本地NPU实现离线推理，敏感文件不上传云端<br>✔️ 填补“智能+本地隐私”空白，成为生产力副驾而非普通工具</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- MRD 部分 -->
+        <!-- MRD -->
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-file-alt"></i>
@@ -254,7 +255,7 @@
                         <h3>⚙️ 非功能性需求</h3>
                         <ul>
                             <li>🔒 默认本地NPU处理，隐私至上</li>
-                            <li>💨 后台CPU占用＜5%</li>
+                            <li>💨 后台CPU占用＜5%，内存轻量化</li>
                             <li>🪟 跨平台一致性 (Win / future macOS)</li>
                         </ul>
                     </div>
@@ -262,7 +263,7 @@
             </div>
         </div>
 
-        <!-- PRD MVP 部分 -->
+        <!-- PRD MVP -->
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-clipboard-list"></i>
@@ -276,11 +277,9 @@
                     <li>“作为财务人员，所有整理行为本地完成，绝不自动上传云端”</li>
                 </ul>
                 <table style="margin: 1rem 0;">
-                    <thead>
-                        <tr><th>功能模块</th><th>描述</th><th>技术依赖</th></tr>
-                    </thead>
+                    <thead><tr><th>功能模块</th><th>描述</th><th>技术依赖</th></tr></thead>
                     <tbody>
-                        <tr><td>🏷️ 自动打标签</td><td>对文档/图片/PDF语义理解，生成3~5个标签，用户可编辑</td><td>本地NPU推理+轻量云端fallback(小众格式)</td></tr>
+                        <tr><td>🏷️ 自动打标签</td><td>对文档/图片/PDF语义理解，生成3~5个标签，用户可编辑</td><td>本地NPU推理 + 轻量云端fallback(小众格式)</td></tr>
                         <tr><td>📁 智能文件夹推荐</td><td>基于标签聚类+时间序列推荐移动路径</td><td>本地聚类算法</td></tr>
                         <tr><td>📅 会议上下文感知</td><td>同步日历+可选麦克风，会前自动提取相关笔记置顶(纯本地)</td><td>需用户授权</td></tr>
                     </tbody>
@@ -293,7 +292,59 @@
                 <ul>
                     <li>✅ 增加“自定义标签建议” (避免不想要的标签如“临时”)</li>
                     <li>✅ 一键“撤销错误分类”，保留最近10次操作</li>
+                    <li>✅ 增加“排除文件夹”设置（用户希望忽略游戏存档/临时目录）</li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- 技术实现思考（精简版） -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-microchip"></i>
+                <h2>⚙️ 技术实现思考 | 轻量·隐私·场景聚焦</h2>
+            </div>
+            <div class="card-body">
+                <div class="insight-text">
+                    <strong>🎯 模型选型核心思路：</strong> 不为全能，只为整理。不采用通用大模型，而是选择轻量级、任务专用的小模型，只做三件事：识别文件类型、提取主题关键词、生成候选标签。所有推理默认在NPU上运行，保证离线可用且隐私安全。
+                </div>
+                <div class="grid-2" style="margin-top: 0.8rem;">
+                    <div>
+                        <h3>🧩 轻量化策略</h3>
+                        <ul>
+                            <li>INT8量化 + 结构化剪枝，体积减小60%以上</li>
+                            <li>动态加载子模型（遇到PDF才加载布局模块）</li>
+                            <li>与NPU团队协作替换激活函数（如ReLU）适配硬件加速</li>
+                            <li>常驻内存 &lt;80MB，后台CPU占用 &lt;3%</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>☁️ 本地 + 轻量云 fallback</h3>
+                        <ul>
+                            <li>小众文件（设计源文件、专业格式）本地置信度低时，仅上传文件名哈希到云端轻量分类器</li>
+                            <li>云端返回建议标签，本地缓存规则，下次直接本地处理</li>
+                            <li>隐私底线：云端绝不接收文件内容，用户可一键关闭云端fallback</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <h3>✂️ 能力裁剪：只做整理所需</h3>
+                        <ul>
+                            <li>❌ 不做情感分析、实体关系抽取、摘要生成</li>
+                            <li>❌ 不识别图片中的物体/人脸（除非文件名/OCR文字明确提示）</li>
+                            <li>✅ 只回答：文件类型？核心主题？适合打哪些标签？</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>🔄 隐私保护的反馈闭环</h3>
+                        <ul>
+                            <li>用户每次修改标签本地记录（不离设备）</li>
+                            <li>可选“帮助改进”：上传脱敏后的“文件类型+最终标签”聚合数据</li>
+                            <li>云端定期微调模型，通过系统更新推送，用户可回滚</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="badge" style="margin-top: 0.8rem;">📌 一句话总结：用最轻量的模型、最少的计算、最低的隐私风险，只解决文件整理这一个垂直问题。</p>
             </div>
         </div>
 
@@ -304,10 +355,10 @@
                 <table>
                     <thead><tr><th>团队</th><th>关键对齐内容</th><th>决策</th></tr></thead>
                     <tbody>
-                        <tr><td>🧠 硬件/NPU</td><td>评估本地模型推理功耗/算力门槛</td><td>支持Intel Ultra / AMD Ryzen 7000+，低配降级轻量模型</td></tr>
-                        <tr><td>💻 软件/客户端</td><td>文件监控范围，标签存储格式SQLite</td><td>不扫描系统目录，排除隐藏文件夹</td></tr>
-                        <tr><td>🔐 安全与隐私</td><td>AI推理数据不出设备，云端fallback需二次授权</td><td>提供“完全离线模式”开关</td></tr>
-                        <tr><td>📢 市场团队</td><td>定位“生产力副驾”强调主动辅助+隐私</td><td>素材展示会议前自动弹笔记场景</td></tr>
+                        <tr><td>🧠 硬件/NPU</td><td>评估本地模型推理功耗与算力门槛</td><td>支持主流AI PC平台，老旧设备降级为规则引擎</td></tr>
+                        <tr><td>💻 软件/客户端</td><td>文件监控范围，标签存储格式SQLite，动态加载机制</td><td>不扫描系统目录，排除隐藏文件夹</td></tr>
+                        <tr><td>🔐 安全与隐私</td><td>AI推理数据不出设备，云端fallback需二次授权</td><td>提供“完全离线模式”开关+隐私指示灯</td></tr>
+                        <tr><td>📢 市场团队</td><td>定位“生产力副驾”强调主动辅助+隐私</td><td>素材展示会议前自动弹笔记场景，信任标识</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -320,7 +371,7 @@
                 <div class="timeline">
                     <div class="timeline-step"><i class="fas fa-flask"></i> <strong>内部alpha</strong><br>20人验证NPU兼容性/标签准确率基线</div>
                     <div class="timeline-step"><i class="fas fa-users"></i> <strong>Beta 1000人</strong><br>收集效率数据+定性反馈<br>发现:用户希望排除特定文件夹</div>
-                    <div class="timeline-step"><i class="fas fa-rotate-left"></i> <strong>迭代2周</strong><br>增加“排除文件夹”+撤销按钮<br>优化小众类型识别(.log/.md)</div>
+                    <div class="timeline-step"><i class="fas fa-rotate-left"></i> <strong>迭代2周</strong><br>增加“排除文件夹”+撤销按钮<br>优化小众类型识别规则，调整置信度阈值</div>
                     <div class="timeline-step"><i class="fas fa-globe"></i> <strong>正式发布+护航</strong><br>客服NPU问题排查指南 + 短视频“生产力副驾”</div>
                 </div>
             </div>
@@ -330,7 +381,7 @@
         </div>
     </div>
 
-    <!-- 英文内容容器 -->
+    <!-- 英文内容 -->
     <div id="en-content" class="lang-en hidden-lang">
         <div class="card">
             <div class="card-header"><i class="fas fa-chart-line"></i><h2>📌 Pain Point & User Research</h2></div>
@@ -347,7 +398,7 @@
             <div class="card-body">
                 <div class="grid-2">
                     <div><h3>🎯 OKRs</h3><ul><li>O: Reduce file organization time by 50%+</li><li>KR1: Auto-tag accuracy ≥85%</li><li>KR2: Weekly active penetration ≥60% (Beta)</li><li>KR3: Satisfaction ≥4.2/5</li></ul></div>
-                    <div><h3>⚙️ Non-functional</h3><ul><li>🔒 Local NPU processing by default</li><li>💨 Background CPU <5%</li><li>🪟 Cross-platform consistency</li></ul></div>
+                    <div><h3>⚙️ Non-functional</h3><ul><li>🔒 Local NPU processing by default</li><li>💨 Background CPU <5%, light memory footprint</li><li>🪟 Cross-platform consistency</li></ul></div>
                 </div>
             </div>
         </div>
@@ -357,34 +408,55 @@
                 <p><strong>Feature:</strong> Auto-tagging + intelligent folder recommendations.</p>
                 <h3>User stories</h3>
                 <ul><li>“As a PM, during meetings the system auto‑pulls relevant notes without searching.”</li><li>“As a finance user, all organizing stays local, never uploaded.”</li></ul>
-                <table><thead><tr><th>Module</th><th>Description</th><th>Tech dependency</th></tr></thead><tbody>
+                <table style="margin:1rem 0"><thead><tr><th>Module</th><th>Description</th><th>Tech dependency</th></tr></thead>
+                <tbody>
                     <tr><td>🏷️ Auto-tagging</td><td>Semantic understanding for docs/images/PDFs, editable tags</td><td>Local NPU + lightweight cloud fallback</td></tr>
                     <tr><td>📁 Folder recommendation</td><td>Cluster-based + timeline suggestions</td><td>Local clustering</td></tr>
                     <tr><td>📅 Meeting context</td><td>Sync calendar + optional mic, show relevant notes before meetings (local)</td><td>User consent</td></tr>
                 </tbody></table>
                 <div class="grid-2"><div><h3>🔺 MoSCoW</h3><ul><li>Must: auto-tag, editable, local</li><li>Should: folder recommend, one-click apply</li><li>Could: cross-device sync</li><li>Won't (MVP): cloud backup</li></ul></div><div><h3>📊 Success metrics</h3><ul><li>Weekly organization time ↓30%</li><li>Tag satisfaction ≥4/5</li><li>User modification rate <20%</li></ul></div></div>
                 <h3>🔄 Iteration based on feedback</h3>
-                <ul><li>➕ “Custom tag suggestions” to avoid unwanted tags</li><li>➕ One‑click “Undo misclassification” with 10‑action history</li></ul>
+                <ul><li>➕ “Custom tag suggestions” to avoid unwanted tags</li><li>➕ One‑click “Undo misclassification” with 10‑action history</li><li>➕ “Exclude folders” setting (ignore game saves / temp dirs)</li></ul>
             </div>
         </div>
+
+        <!-- Tech insights (lightweight) -->
+        <div class="card">
+            <div class="card-header"><i class="fas fa-microchip"></i><h2>⚙️ Tech Strategy: Lightweight · Private · Task-Focused</h2></div>
+            <div class="card-body">
+                <div class="insight-text"><strong>🎯 Model selection philosophy:</strong> Do one thing well – file organizing. Use small, task-specific models instead of general-purpose LLMs. All inference runs on NPU by default for offline privacy.</div>
+                <div class="grid-2">
+                    <div><h3>🧩 Lightweight techniques</h3><ul><li>INT8 quantization + structured pruning → 60% size reduction</li><li>Dynamic loading (PDF layout model only when needed)</li><li>Activation function tuning for NPU acceleration (e.g., ReLU)</li><li>Resident memory <80MB, CPU <3% in background</li></ul></div>
+                    <div><h3>☁️ Local + lightweight cloud fallback</h3><ul><li>For niche files, only filename hash sent to cloud classifier (no content)</li><li>Cloud returns suggested tags; local caches rule for next time</li><li>Privacy: user can disable cloud fallback completely</li></ul></div>
+                </div>
+                <div class="grid-2">
+                    <div><h3>✂️ Capability pruning</h3><ul><li>❌ No sentiment analysis, relation extraction, summarization</li><li>❌ No object/face recognition in images</li><li>✅ Only answers: file type? core topic? candidate tags?</li></ul></div>
+                    <div><h3>🔄 Privacy-safe feedback loop</h3><ul><li>Local logging of user tag edits (stays on device)</li><li>Optional “Help improve”: upload anonymized (file type + final tags) aggregates</li><li>Quarterly model updates via system update; user can rollback</li></ul></div>
+                </div>
+                <p class="badge">📌 Bottom line: minimal computation, maximal privacy, solving exactly one vertical problem.</p>
+            </div>
+        </div>
+
         <div class="card">
             <div class="card-header"><i class="fas fa-people-arrows"></i><h2>🤝 Cross-functional alignment</h2></div>
             <div class="card-body">
-                <table><thead><tr><th>Team</th><th>Key alignment</th><th>Decision</th></tr></thead><tbody>
-                    <tr><td>🧠 Hardware/NPU</td><td>Power & compute threshold</td><td>Intel Ultra / AMD Ryzen 7000+; fallback light model for older devices</td></tr>
-                    <tr><td>💻 Software</td><td>File monitoring scope, tag storage (SQLite)</td><td>Exclude system & hidden folders</td></tr>
-                    <tr><td>🔐 Security/Privacy</td><td>On-device inference, cloud fallback needs explicit consent</td><td>“Fully offline mode” switch</td></tr>
-                    <tr><td>📢 Marketing</td><td>Position as “Productivity Co‑pilot”</td><td>Highlight auto‑popup before meetings</td></tr>
+                <table><thead><tr><th>Team</th><th>Key alignment</th><th>Decision</th></tr></thead>
+                <tbody>
+                    <tr><td>🧠 Hardware/NPU</td><td>Power & compute threshold, NPU instructions</td><td>Support mainstream AI PC; fallback to rule engine on legacy devices</td></tr>
+                    <tr><td>💻 Software</td><td>File monitoring scope, tag storage (SQLite), dynamic loading</td><td>Skip system & hidden folders</td></tr>
+                    <tr><td>🔐 Security/Privacy</td><td>On-device inference, cloud fallback requires explicit consent</td><td>“Fully offline mode” + privacy indicator light</td></tr>
+                    <tr><td>📢 Marketing</td><td>Position as “Productivity Co‑pilot”</td><td>Show auto-popup before meetings, trust badge</td></tr>
                 </tbody></table>
             </div>
         </div>
+
         <div class="card">
             <div class="card-header"><i class="fas fa-rocket"></i><h2>🚀 Release cadence & iteration</h2></div>
             <div class="card-body">
                 <div class="timeline">
                     <div class="timeline-step"><i class="fas fa-flask"></i> <strong>Internal alpha</strong><br>20 users, NPU compatibility & baseline</div>
                     <div class="timeline-step"><i class="fas fa-users"></i> <strong>Beta (1,000 users)</strong><br>Collect efficiency data, find “exclude folders” need</div>
-                    <div class="timeline-step"><i class="fas fa-rotate-left"></i> <strong>2‑week iteration</strong><br>Add exclude folders + undo button; improve niche type recognition</div>
+                    <div class="timeline-step"><i class="fas fa-rotate-left"></i> <strong>2‑week iteration</strong><br>Add exclude folders + undo button; improve niche type rules</div>
                     <div class="timeline-step"><i class="fas fa-globe"></i> <strong>GA + Enablement</strong><br>Support troubleshooting guide + “co‑pilot” videos</div>
                 </div>
             </div>
@@ -399,31 +471,18 @@
     const cnDiv = document.getElementById('cn-content');
     const enDiv = document.getElementById('en-content');
     const btns = document.querySelectorAll('.lang-btn');
-
     function setLang(lang) {
         if (lang === 'cn') {
             cnDiv.classList.remove('hidden-lang');
             enDiv.classList.add('hidden-lang');
-            btns.forEach(btn => {
-                if(btn.dataset.lang === 'cn') btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
+            btns.forEach(btn => { btn.dataset.lang === 'cn' ? btn.classList.add('active') : btn.classList.remove('active'); });
         } else {
             cnDiv.classList.add('hidden-lang');
             enDiv.classList.remove('hidden-lang');
-            btns.forEach(btn => {
-                if(btn.dataset.lang === 'en') btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
+            btns.forEach(btn => { btn.dataset.lang === 'en' ? btn.classList.add('active') : btn.classList.remove('active'); });
         }
     }
-
-    btns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            setLang(btn.dataset.lang);
-        });
-    });
-    // 初始中文
+    btns.forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
     setLang('cn');
 </script>
 </body>
